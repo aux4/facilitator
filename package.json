@@ -1,0 +1,38 @@
+{
+  "name": "facilitator",
+  "version": "0.0.1",
+  "description": "Natural language as a programming language",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "facilitator": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DefinityLabs/facilitator.git"
+  },
+  "keywords": [
+    "test",
+    "automation",
+    "story",
+    "behavior"
+  ],
+  "author": "Definity Labs",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/DefinityLabs/facilitator/issues"
+  },
+  "homepage": "https://DefinityLabs.github.io/#/products/facilitator",
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "jest": "^20.0.4"
+  },
+  "dependencies": {
+    "execall": "^1.0.0"
+  }
+}
