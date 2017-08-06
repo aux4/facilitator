@@ -10,7 +10,7 @@
   },
   "preferGlobal": "true",
   "bin": {
-    "facilitator": "index.js"
+    "facilitator": "executable.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/DefinityLabs/facilitator/issues"
   },
-  "homepage": "https://DefinityLabs.github.io/#/products/facilitator",
+  "homepage": "https://definitylabs.github.io/#/products/facilitator",
   "devDependencies": {
     "coveralls": "^2.13.1",
     "jest": "^20.0.4"
