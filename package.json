@@ -1,6 +1,6 @@
 {
   "name": "facilitator",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Natural language as a programming language",
   "main": "index.js",
   "scripts": {
