@@ -142,7 +142,7 @@ export function install(facilitator) {
     });
   });
 
-  facilitator.register("set {variable} as {value}", (variable, value, context) => {
+  facilitator.register("set {variable} to {value}", (variable, value, context) => {
     context[variable] = value;
   });
 
