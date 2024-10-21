@@ -1,20 +1,19 @@
 {
-  "name": "facilitator",
-  "version": "0.0.3",
+  "name": "@aux4/facilitator",
+  "version": "0.1.0",
+  "type": "module",
   "description": "Natural language as a programming language",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest --coverage"
   },
   "preferGlobal": "true",
   "bin": {
-    "facilitator": "executable.js"
+    "facilitator": "bin/executable.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DefinityLabs/facilitator.git"
+    "url": "git+https://github.com/aux4/facilitator.git"
   },
   "keywords": [
     "test",
@@ -22,17 +21,15 @@
     "story",
     "behavior"
   ],
-  "author": "Definity Labs",
+  "author": "aux4",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/DefinityLabs/facilitator/issues"
+    "url": "https://github.com/aux4/facilitator/issues"
   },
-  "homepage": "https://definitylabs.github.io/#/products/facilitator",
   "devDependencies": {
-    "coveralls": "^2.13.1",
-    "jest": "^20.0.4"
+    "jest": "^29.7.0"
   },
   "dependencies": {
-    "execall": "^1.0.0"
+    "execall": "^3.0.0"
   }
 }
