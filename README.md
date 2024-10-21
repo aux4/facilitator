@@ -14,7 +14,7 @@ set "firstName" to "John"
 set "lastName" to "Doe"
 print "Hello {{firstName}} {{lastName}}"
 ```
-```
+
 
 ```bash
 facilitator <file>
