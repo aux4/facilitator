@@ -1,6 +1,6 @@
 {
   "name": "@aux4/facilitator",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "Natural language as a programming language",
   "main": "index.js",
@@ -28,8 +28,5 @@
   },
   "devDependencies": {
     "jest": "^29.7.0"
-  },
-  "dependencies": {
-    "execall": "^3.0.0"
   }
 }

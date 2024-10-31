@@ -69,7 +69,36 @@ describe("facilitator", () => {
         });
 
         it('returns "name" and "John" as parameters', () => {
-          expect(commands[0].parameters).toEqual(["name", "John"]);
+          expect(commands[0].parameters.name).toEqual("name");
+          expect(commands[0].parameters.value).toEqual("John");
+        });
+      });
+
+      describe("replace variable", () => {
+        beforeEach(() => {
+          facilitator.register("print {text}", callback);
+          commands = facilitator.compile('set "name" to "John" and print "hello {{name}}"');
+        });
+
+        it('returns two commands', () => {
+          expect(commands.length).toEqual(2);
+        });
+
+        it('return "set {name} to {value}" as first skill expression', () => {
+          expect(commands[0].skill.action.expression).toEqual("set {name} to {value}");
+        });
+
+        it('returns "name" and "John" as parameters', () => {
+          expect(commands[0].parameters.name).toEqual("name");
+          expect(commands[0].parameters.value).toEqual("John");
+        });
+
+        it('return "print {text}" as second skill expression', () => {
+          expect(commands[1].skill.action.expression).toEqual("print {text}");
+        });
+
+        it('returns "hello {name}" as parameters', () => {
+          expect(commands[1].parameters.text).toEqual("hello {{name}}");
         });
       });
     });
@@ -105,32 +134,29 @@ describe("facilitator", () => {
 
     describe("nested instructions", () => {
       beforeEach(() => {
-        facilitator.register("execute {action}", callback, { action: "(.+)" });
         facilitator.register("first instruction", callback);
         facilitator.register("second instruction", callback);
       });
 
       describe("sorted descending", () => {
         beforeEach(() => {
-          commands = facilitator.compile("execute second instruction and first instruction");
+          commands = facilitator.compile("second instruction and first instruction");
         });
 
         it("returns second, first and execute", () => {
           expect(commands[0].skill.action.expression).toEqual("second instruction");
           expect(commands[1].skill.action.expression).toEqual("first instruction");
-          expect(commands[2].skill.action.expression).toEqual("execute {action}");
         });
       });
 
       describe("sorted ascending", () => {
         beforeEach(() => {
-          commands = facilitator.compile("execute first instruction and second instruction");
+          commands = facilitator.compile("first instruction and second instruction");
         });
 
         it("returns second, first and execute", () => {
           expect(commands[0].skill.action.expression).toEqual("first instruction");
           expect(commands[1].skill.action.expression).toEqual("second instruction");
-          expect(commands[2].skill.action.expression).toEqual("execute {action}");
         });
       });
     });
