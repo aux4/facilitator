@@ -1,6 +1,6 @@
 {
   "name": "@aux4/facilitator",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "type": "module",
   "description": "Natural language as a programming language",
   "main": "index.js",
