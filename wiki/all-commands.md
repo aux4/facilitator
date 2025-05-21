@@ -109,7 +109,7 @@ the module name must follow the convention `<name>-facilitator-skill`.
 
 ```js
 export function install(facilitator) {
-  facilitator.register("hello {name}", (name) => {
+  facilitator.register("hello {name}", name => {
     console.log("hello", name);
   });
 }

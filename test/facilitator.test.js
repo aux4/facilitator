@@ -80,7 +80,7 @@ describe("facilitator", () => {
           commands = facilitator.compile('set "name" to "John" and print "hello {{name}}"');
         });
 
-        it('returns two commands', () => {
+        it("returns two commands", () => {
           expect(commands.length).toEqual(2);
         });
 
@@ -159,6 +159,55 @@ describe("facilitator", () => {
           expect(commands[1].skill.action.expression).toEqual("second instruction");
         });
       });
+    });
+  });
+
+  describe("list command output format", () => {
+    let facilitator;
+    beforeEach(() => {
+      facilitator = new Facilitator();
+      facilitator.register("single line {value}", () => {});
+      facilitator.register("multi line\n{block}\nend", () => {});
+    });
+
+    it("outputs single line action in correct format", () => {
+      const actions = facilitator.skills
+        .map(skill => {
+          if (skill.action && skill.action.expression) {
+            let expr = skill.action.expression
+              .replace(/\\n/g, "\n")
+              .replace(/\\s\*/g, "")
+              .replace(/\\s\+/g, " ")
+              .replace(/^[\n\s]+|[\n\s]+$/g, "");
+            if (expr.includes("\n")) {
+              expr = expr.replace(/\n/g, "\n  ");
+            }
+            return `* ${expr}`;
+          }
+          return null;
+        })
+        .filter(Boolean);
+      expect(actions[0]).toBe("* single line {value}");
+    });
+
+    it("outputs multiline action in correct format with indentation", () => {
+      const actions = facilitator.skills
+        .map(skill => {
+          if (skill.action && skill.action.expression) {
+            let expr = skill.action.expression
+              .replace(/\\n/g, "\n")
+              .replace(/\\s\*/g, "")
+              .replace(/\\s\+/g, " ")
+              .replace(/^[\n\s]+|[\n\s]+$/g, "");
+            if (expr.includes("\n")) {
+              expr = expr.replace(/\n/g, "\n  ");
+            }
+            return `* ${expr}`;
+          }
+          return null;
+        })
+        .filter(Boolean);
+      expect(actions[1]).toBe("* multi line\n  {block}\n  end");
     });
   });
 });

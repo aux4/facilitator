@@ -9,10 +9,34 @@ install(facilitator);
 const args = process.argv.splice(2);
 const action = args[0];
 
-if (action !== "execute") {
+if (action !== "execute" && action !== "list") {
   console.error("[ERROR] Invalid action", action, "use:");
   console.error("facilitator execute <filename>");
+  console.error("facilitator list");
   process.exit(2);
+}
+
+if (action === "list") {
+  const actions = facilitator.skills
+    .map(skill => {
+      if (skill.action && skill.action.expression) {
+        let expr = skill.action.expression
+          .replace(/\\n/g, "\n")
+          .replace(/\\s\*/g, "")
+          .replace(/\\s\+/g, " ")
+          .replace(/^[\n\s]+|[\n\s]+$/g, "");
+        if (expr.includes("\n")) {
+          expr = expr.replace(/\n/g, "\n  ");
+        }
+        return `* ${expr}`;
+      }
+      return null;
+    })
+    .filter(Boolean);
+  actions.forEach(action => {
+    console.log(action);
+  });
+  process.exit(0);
 }
 
 const files = args.splice(1);

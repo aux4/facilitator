@@ -5,9 +5,10 @@
   "description": "Natural language as a programming language",
   "main": "index.js",
   "scripts": {
-    "test": "node --experimental-vm-modules ./node_modules/.bin/jest --coverage"
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest --coverage",
+    "format": "prettier --write ."
   },
-  "preferGlobal": "true",
+  "preferGlobal": true,
   "bin": {
     "facilitator": "bin/executable.js"
   },
@@ -27,6 +28,7 @@
     "url": "https://github.com/aux4/facilitator/issues"
   },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "prettier": "^3.0.0"
   }
 }

@@ -62,7 +62,7 @@ the third parameter of register receives an object with the regular expression t
 
 ```js
 {
-  count: /\d+/
+  count: /\d+/;
 }
 ```
 
@@ -72,14 +72,18 @@ import Facilitator, { install } from "facilitator";
 const facilitator = new Facilitator();
 install(facilitator);
 
-facilitator.register("increment\\s*{count?}", (count, context) => {
-  let value = context.count || parseInt(count);
-  value += 1;
-  context.count = value;
-  console.log("increment", value);
-}, {
-  count: /\d+/
-});
+facilitator.register(
+  "increment\\s*{count?}",
+  (count, context) => {
+    let value = context.count || parseInt(count);
+    value += 1;
+    context.count = value;
+    console.log("increment", value);
+  },
+  {
+    count: /\d+/
+  }
+);
 
 const script = `
 increment 5
